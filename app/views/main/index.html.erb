@@ -1,1 +1,11 @@
-<div class="welcome">Welcome to <br/>Cloud B &amp; B</div>
+<div id="left-col" class="pull-left">
+  <div class="welcome">Welcome to <br/>Cloud B &amp; B</div>
+</div>
+
+<div id="right-col" class="pull-right">
+  <ul class="well">
+    <% @properties.each do |property| %>
+      <li><%= link_to property.name, property_path(property) %></li>
+    <% end %>
+  </ul>
+</div>

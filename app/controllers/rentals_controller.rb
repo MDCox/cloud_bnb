@@ -1,0 +1,24 @@
+class RentalsController < ApplicationController
+  def index
+  end
+
+  def new
+    @rental = Rental.new
+  end
+
+  def create
+    @rental = Rental.new(rental_params)
+    if @rental.save
+      current_user.rentals << @rental
+      redirect_to :back
+    else
+      render "new"
+    end
+  end
+
+private
+
+  def rental_params
+    params.require(:rental).permit(:property_id, :start_date, :end_date)
+  end
+end

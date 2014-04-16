@@ -5,4 +5,9 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :properties, :foreign_key => :owner_id
+  has_many :rentals, :foreign_key => :renter_id
+
+  def rental_properties
+    self.rentals.map { |r| r.property }.uniq
+  end
 end

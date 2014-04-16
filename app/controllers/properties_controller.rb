@@ -4,6 +4,7 @@ class PropertiesController < ApplicationController
 
   def show
     @property = Property.find(params[:id])
+    @rental = Rental.new
   end
 
   def new

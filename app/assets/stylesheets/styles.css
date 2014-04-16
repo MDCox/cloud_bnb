@@ -2,6 +2,10 @@ body {
 
 }
 
+#right-col {
+  padding: 30px;
+}
+
 .navbar {
   padding: 10px;
   line-height: 40px;
