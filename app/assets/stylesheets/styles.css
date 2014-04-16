@@ -1,0 +1,19 @@
+.navbar {
+  padding: 10px;
+  line-height: 40px;
+}
+
+.navbar a {
+  color: black;
+}
+
+.logo a {
+  font-size: 40px;
+  font-family: 'Oleo Script', cursive;
+  text-decoration: none;
+}
+
+.welcome {
+  font-family: 'Oleo Script', cursive;
+  font-size: 80px;
+}

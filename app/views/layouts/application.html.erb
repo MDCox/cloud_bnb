@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cloud B &amp; B</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+  <link href='http://fonts.googleapis.com/css?family=Oleo+Script' rel='stylesheet' type='text/css'>
+</head>
+<body>
+
+<nav class="navbar navbar-default">
+  <span class="logo"><%=link_to "Cloud B & B", root_path %></span>
+  <div class="pull-right">
+  <% if user_signed_in? %>
+      Logged in as <strong><%= current_user.name %></strong>.
+      <%= link_to 'Edit profile', edit_user_registration_path, :class => 'btn btn-danger' %> |
+      <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'btn btn-danger' %>
+    <% else %>
+      <%= link_to "Sign up", new_user_registration_path, :class => 'btn btn-danger' %> |
+      <%= link_to "Login", new_user_session_path, :class => 'btn btn-danger' %>
+    <% end %>
+    <%= yield(:navigation) %>
+  </div>
+</nav>
+
+<div class="container">
+  <%= yield(:header) %>
+  <%= yield %>
+</div>
+</body>
+</html>

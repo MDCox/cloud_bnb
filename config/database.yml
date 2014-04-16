@@ -1,0 +1,8 @@
+development:
+  adapter: postgresql
+  database: cloud_bnb_development
+
+test:
+  adapter: postgresql
+  database: cloud_bnb_test
+
