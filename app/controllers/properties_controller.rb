@@ -20,12 +20,23 @@ class PropertiesController < ApplicationController
   end
 
   def destroy
+    @property = Property.find(params[:id])
+    @property.destroy
+    redirect_to user_path(@property.owner)
   end
 
   def edit
+    @property = Property.find(params[:id])
   end
 
   def update
+    @property = Property.find(params[:id])
+    if @property.update(property_params)
+      redirect_to property_path(@property)
+    else
+      render 'edit'
+    end
+
   end
 
 private
