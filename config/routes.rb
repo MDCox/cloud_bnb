@@ -1,4 +1,7 @@
 CloudBnb::Application.routes.draw do
-  devise_for :users
   root :to => "main#index", via: :get
+
+  devise_for :users
+  resources :users, only: [:show]
+  resources :properties
 end

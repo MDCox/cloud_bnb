@@ -1,0 +1,14 @@
+<%= content_for(:header) do %>
+  <h1><%= @user.name %></h1>
+<% end %>
+
+<h3>Properties</h3>
+<% @user.properties.each do |property| %>
+  <p>
+    <%= link_to "#{property.name}", property_path(property) %>
+  </p>
+<% end %>
+
+<% if @user == current_user %>
+  <%= link_to "Add a new listing", new_property_path, :class => 'btn btn-danger' %>
+<% end %>

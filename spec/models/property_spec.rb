@@ -1,11 +1,12 @@
 require 'spec_helper'
 
-describe User do
-  it { should have_many :properties }
+describe Property do
+  it { should belong_to :user }
 
-  it 'knows what properties it has' do
+  it "knows who owns it" do
     test_user = FactoryGirl.create(:user)
     test_property = FactoryGirl.create(:property, :owner_id => test_user.id)
-    test_user.properties.should eq [test_property]
+    test_property.owner.should eq test_user
   end
+
 end

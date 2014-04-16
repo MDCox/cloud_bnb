@@ -1,0 +1,8 @@
+<%= content_for(:header) do %>
+  <h2><%= @property.name %></h2>
+<% end %>
+
+<p><%= @property.description %></p>
+<p>Price: $<%= @property.price %> per night</p>
+<p>Location: <%= @property.location %></p>
+<p>Owner: <%= link_to "#{@property.owner.name}", user_path(@property.owner) %></p>
