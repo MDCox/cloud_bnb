@@ -50,6 +50,6 @@ class PropertiesController < ApplicationController
 
 private
   def property_params
-    params.require(:property).permit(:name, :price, :location, :owner_id, :description)
+    params.require(:property).permit(:name, :price, :location, :owner_id, :description, :image)
   end
 end

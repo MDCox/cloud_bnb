@@ -5,7 +5,7 @@
 <div class="row">
 
 <div class="col col-md-6">
-  Photo will go here
+  <%= image_tag @property.image.url(:medium) %>
 </div>
 <div class="col col-md-6 gen-info">
   <h4><%= @property.description %></h4>
