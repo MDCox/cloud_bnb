@@ -10,7 +10,7 @@ class PropertiesController < ApplicationController
     @month_name = Date::MONTHNAMES[Date.today.month]
 
     Rental.where(property_id: @property.id).each do |rental|
-      (rental.start_date..rental.end_date).each{ |date| @current_rentals << date }
+      (rental.start_date..rental.end_date - 1).each{ |date| @current_rentals << date }
     end
 
   end

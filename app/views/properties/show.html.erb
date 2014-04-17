@@ -2,56 +2,94 @@
   <h2><%= @property.name %></h2>
 <% end %>
 
-<p><%= @property.description %></p>
-<p>Price: $<%= @property.price %> per night</p>
-<p>Location: <%= @property.location %></p>
-<p>Owner: <%= link_to "#{@property.owner.name}", user_path(@property.owner) %></p>
+<div class="row">
 
-<% if current_user.rentals %>
-  <p>Your rentals for this property: </p>
-  <ul>
-  <% current_user.rentals.each do |rental| %>
-    <% if rental.property_id == @property.id %>
-      <li>From <%= rental.start_date %> to <%= rental.end_date %></li>
+<div class="col col-md-6">
+  Photo will go here
+</div>
+<div class="col col-md-6 gen-info">
+  <h4><%= @property.description %></h4>
+  <p>Price: $<%= @property.price %> per night</p>
+  <p>Location: <%= @property.location %></p>
+  <p>Owner: <%= link_to "#{@property.owner.name}", user_path(@property.owner) %></p>
+
+  <% if current_user.rentals %>
+    <p>Your rentals for this property: </p>
+    <ul>
+    <% current_user.rentals.each do |rental| %>
+      <% if rental.property_id == @property.id %>
+        <li>From <%= rental.start_date %> to <%= rental.end_date %></li>
+      <% end %>
     <% end %>
+    </ul>
   <% end %>
-  </ul>
-<% end %>
-<br/>
+  <br/>
+</div>
+</div>
 
-<!-- EXPERIMENTING -->
+
 <%= form_for @rental do |f| %>
   <div class="date-choice">
     <div class="panel panel-default">
 
-      <div class="panel-heading"><%= @month_name %></div>
-      <div id="start-date" class="panel-body calendar">
+      <div class="panel-heading">Check-in</div>
 
-        <% 1.upto(Time.days_in_month(@current_month)) do |day| %>
-          <% full_date = "#{@current_month}/#{day}/2014" %>
+      <h4>
+        <span class="month_left_arrow"> < </span>
+        <%= @month_name %>
+        <span class="month_right_arrow"> > </span>
+      </h4>
 
-          <% if @current_rentals.include?(Date.strptime(full_date, '%m/%d/%Y')) %>
-            <span class="unclickable"><%= day %></span>
-          <% else %>
-            <span id="<%= full_date %>" class="clickable start"><%= day %></span>
+      <table id="start-date" class="panel-body calendar">
+          <% 1.upto(Time.days_in_month(@current_month)) do |day| %>
+            <% full_date = "#{@current_month}/#{day}/2014" %>
+
+            <% if day % 7 == 1 %>
+              <tr>
+            <% end %>
+
+            <% if @current_rentals.include?(Date.strptime(full_date, '%m/%d/%Y')) %>
+              <td class="unclickable"><%= " #{day}"[-2..-1] %></td>
+            <% else %>
+              <td id="<%= full_date %>" class="clickable start"><%= " #{day}"[-2..-1] %></td>
+            <% end %>
+
+            <% if day % 7 == 0 %>
+              </tr>
+            <% end %>
           <% end %>
-        <% end %>
-
-      </div>
+        </table>
     </div>
 
     <div class="panel panel-default">
-      <div class="panel-heading"><%= @month_name %></div>
-      <div id="end-date" class="panel-body calendar">
+      <div class="panel-heading">Check-out</div>
+
+      <h4>
+        <span class="month_left_arrow"> < </span>
+        <%= @month_name %>
+        <span class="month_right_arrow"> > </span>
+      </h4>
+
+      <table id="end-date" class="panel-body calendar">
+
         <% 1.upto(Time.days_in_month(@current_month)) do |day| %>
           <% full_date = "#{@current_month}/#{day}/2014" %>
+
+          <% if day % 7 == 1 %>
+            <tr>
+          <% end %>
+
           <% if @current_rentals.include?(Date.strptime(full_date, '%m/%d/%Y')) %>
-            <span class="unclickable"><%= day %></span>
+            <td class="unclickable"><%= day %></td>
           <% else %>
-            <span id="<%= full_date %>" class="clickable end"><%= day %></span>
+            <td id="<%= full_date %>" class="clickable end"><%= day %></td>
+          <% end %>
+
+          <% if day % 7 == 0 %>
+              </tr>
           <% end %>
         <% end %>
-      </div>
+      </table>
     </div>
   </div>
 
@@ -60,9 +98,6 @@
   <%= f.hidden_field :property_id, value: @property.id %><br/>
   <%= f.submit "Rent!", :class => 'btn btn-danger' %>
 <% end %>
-<!-- EXPERIMENTING -->
-
-<% #render 'rentals/form' %>
 
 <br/>
 

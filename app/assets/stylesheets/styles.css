@@ -1,5 +1,5 @@
 body {
-
+  background-color: #F1E3AD;
 }
 
 #right-col {
@@ -26,18 +26,37 @@ body {
   font-size: 80px;
 }
 
-.calendar {
-  width: 147px;
-  height: 147px;
-
-  border-style: solid;
-  border-width: 1px;
-}
 
 .unclickable {
   color: lightgray;
 }
 
+table {
+  width: 160px;
+}
+
 .active_date {
   background-color: rgba(0,0,200,.3);
+}
+ .panel {
+  width: 170px;
+ }
+
+ .calendar {
+  width: 160px;
+  margin-left: 5px;
+ }
+
+.panel h4 {
+  text-align: center;
+}
+
+.date-choice div.panel {
+  display: inline-block;
+}
+
+.gen-info {
+  background-color: rgba(89, 192, 174, .8);
+  border-radius: 20px;
+  color: #101E3D;
 }
