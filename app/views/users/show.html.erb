@@ -5,6 +5,7 @@
 <h3>Properties</h3>
 <% @user.properties.each do |property| %>
   <p>
+    <%= image_tag property.image.url(:thumb) %>
     <%= link_to "#{property.name}", property_path(property) %>
   </p>
 <% end %>
