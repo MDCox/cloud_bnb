@@ -1,11 +1,12 @@
-<div id="left-col" class="pull-left">
+<div id="left-col" class="">
   <div class="welcome">Welcome to <br/>Cloud B &amp; B</div>
 </div>
 
-<div id="right-col" class="pull-right">
-  <ul class="well">
-    <% @properties.each do |property| %>
-      <li><%= link_to property.name, property_path(property) %></li>
-    <% end %>
+<div class="film-strip">
+  <h2>Recent Listings</h2>
+  <ul>
+  <% @properties.reverse.each do |property| %>
+    <span><%= link_to image_tag(property.image.url(:medium)), property_path(property) %><h4><%=property.name%></h4><p><%=property.description%></p></span>
+  <% end %>
   </ul>
 </div>

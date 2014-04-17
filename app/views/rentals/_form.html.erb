@@ -5,14 +5,14 @@
       <div class="panel-heading">Check-in</div>
 
       <h4>
-        <span class="month_left_arrow"> < </span>
-        <%= @month_name %>
-        <span class="month_right_arrow"> > </span>
+        <span id="start_month_left_arrow"> < </span>
+        <%= @start_month_name %>
+        <span id="start_month_right_arrow"> > </span>
       </h4>
 
       <table id="start-date" class="panel-body calendar">
-          <% 1.upto(Time.days_in_month(@current_month)) do |day| %>
-            <% full_date = "#{@current_month}/#{day}/2014" %>
+          <% 1.upto(Time.days_in_month(@current_start_month)) do |day| %>
+            <% full_date = "#{@current_start_month}/#{day}/2014" %>
 
             <% if day % 7 == 1 %>
               <tr>
@@ -36,14 +36,14 @@
 
       <h4>
         <span class="month_left_arrow"> < </span>
-        <%= @month_name %>
+        <%= @end_month_name %>
         <span class="month_right_arrow"> > </span>
       </h4>
 
       <table id="end-date" class="panel-body calendar">
 
-        <% 1.upto(Time.days_in_month(@current_month)) do |day| %>
-          <% full_date = "#{@current_month}/#{day}/2014" %>
+        <% 1.upto(Time.days_in_month(@current_end_month)) do |day| %>
+          <% full_date = "#{@current_end_month}/#{day}/2014" %>
 
           <% if day % 7 == 1 %>
             <tr>

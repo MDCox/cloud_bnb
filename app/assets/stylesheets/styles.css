@@ -31,6 +31,27 @@ body {
   color: lightgray;
 }
 
+.clickable:hover {
+  cursor: pointer;
+}
+
+#start_month_left_arrow:hover {
+  cursor: pointer;
+}
+
+#start_month_right_arrow:hover {
+  cursor: pointer;
+}
+
+#end_left_arrow:hover {
+  cursor: pointer;
+}
+
+#end_right_arrow:hover {
+  cursor: pointer;
+}
+
+
 table {
   width: 160px;
 }
@@ -59,6 +80,7 @@ table {
   background-color: rgba(89, 192, 174, .8);
   border-radius: 20px;
   color: #101E3D;
+  padding: 10px;
 }
 
 #rental-form {
@@ -67,4 +89,44 @@ table {
 
 #see-rental-form {
   margin: 10px;
+}
+
+.film-strip {
+  margin:10px;
+  padding: 10px;
+  overflow-y: hidden;
+  position: fixed;
+  left: 0;
+  background-color: rgba(241, 77, 74, .8);
+  border-radius: 10px;
+}
+
+.film-strip ul{
+  width: 200%;
+  margin:0;
+  padding:0;
+  list-style:none;
+}
+
+.film-strip img {/* < Add a min-width if needed */
+  padding:10px 100px;
+  text-align:center;
+  vertical-align:middle;
+}
+
+.film-strip a {
+  border:0;
+  display:inline-block;
+  margin:0px auto;
+
+}
+
+.film-strip span {
+  text-align: center;
+  border:0;
+  display:inline-block;
+  margin:0px auto;
+  border-radius: 5px;
+  padding: 5px;
+  height: 90%;
 }
