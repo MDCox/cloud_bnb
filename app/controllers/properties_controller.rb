@@ -6,6 +6,8 @@ class PropertiesController < ApplicationController
     @property = Property.find(params[:id])
     @rental = Rental.new
     @current_rentals = []
+    @current_month = Date.today.month
+    @month_name = Date::MONTHNAMES[Date.today.month]
 
     Rental.where(property_id: @property.id).each do |rental|
       (rental.start_date..rental.end_date).each{ |date| @current_rentals << date }

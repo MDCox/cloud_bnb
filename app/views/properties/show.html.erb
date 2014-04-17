@@ -23,23 +23,34 @@
 <%= form_for @rental do |f| %>
   <div class="date-choice">
     <div class="panel panel-default">
-      <% current_month = Date.today.month %>
-      <div class="panel-heading"><%= current_month %></div>
+
+      <div class="panel-heading"><%= @month_name %></div>
       <div id="start-date" class="panel-body calendar">
-        <% 1.upto(Time.days_in_month(current_month)) do |day| %>
-          <% full_date = "#{current_month}/#{day}/2014" %>
+
+        <% 1.upto(Time.days_in_month(@current_month)) do |day| %>
+          <% full_date = "#{@current_month}/#{day}/2014" %>
+
           <% if @current_rentals.include?(Date.strptime(full_date, '%m/%d/%Y')) %>
-            <span id="<%= full_date %>" class="clickable start"><%= day %></span>
-          <% else %>
             <span class="unclickable"><%= day %></span>
+          <% else %>
+            <span id="<%= full_date %>" class="clickable start"><%= day %></span>
           <% end %>
         <% end %>
+
       </div>
     </div>
 
     <div class="panel panel-default">
-      <div class="panel-heading">December</div>
+      <div class="panel-heading"><%= @month_name %></div>
       <div id="end-date" class="panel-body calendar">
+        <% 1.upto(Time.days_in_month(@current_month)) do |day| %>
+          <% full_date = "#{@current_month}/#{day}/2014" %>
+          <% if @current_rentals.include?(Date.strptime(full_date, '%m/%d/%Y')) %>
+            <span class="unclickable"><%= day %></span>
+          <% else %>
+            <span id="<%= full_date %>" class="clickable end"><%= day %></span>
+          <% end %>
+        <% end %>
       </div>
     </div>
   </div>
@@ -63,13 +74,15 @@
 <script type="text/javascript">
   $(document).ready(function(){
     $('.start').click(function(){
+      $('.start').removeClass("active_date");
       $(this).addClass("active_date");
-      $('#rental_start_date').value = $(this).attr('id');
+      $('#rental_start_date').val($(this).attr('id'));
     });
 
     $('.end').click(function(){
-      this.addClass("active_date");
-      $('#rental_start_date').value(this.id);
+      $('.end').removeClass("active_date");
+      $(this).addClass("active_date");
+      $('#rental_end_date').val($(this).attr('id'));
     });
   });
 </script>
