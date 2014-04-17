@@ -10,4 +10,16 @@ class User < ActiveRecord::Base
   def rental_properties
     self.rentals.map { |r| r.property }.uniq
   end
+
+  def admin?
+    self.admin
+  end
+
+  def renter?
+    self.renter
+  end
+
+  def owner?
+    self.owner
+  end
 end

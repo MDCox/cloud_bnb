@@ -13,7 +13,7 @@
   <p>Location: <%= @property.location %></p>
   <p>Owner: <%= link_to "#{@property.owner.name}", user_path(@property.owner) %></p>
 
-  <% if current_user.rentals %>
+  <% if current_user %>
     <p>Your rentals for this property: </p>
     <ul>
     <% current_user.rentals.each do |rental| %>
@@ -101,8 +101,10 @@
 
 <br/>
 
-<% if @property.owner == current_user %>
+<% if can? :destroy, @property %>
   <%= link_to "Delete this Property", property_path(@property), :class => 'btn btn-danger', :data => {:confirm => "Are you sure you wish to delete this listing?", :method => "delete"} %>
+<% end %>
+<% if can? :update, @property %>
   <%= link_to "Edit this property", edit_property_path(@property), :class => 'btn btn-danger' %>
 <% end %>
 

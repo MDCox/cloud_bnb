@@ -14,6 +14,7 @@ gem 'devise'
 gem 'bootstrap-sass'
 gem 'pry'
 gem 'paperclip'
+gem 'cancancan'
 
 group :development do
   gem 'better_errors'
