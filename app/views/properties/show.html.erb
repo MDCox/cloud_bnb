@@ -28,76 +28,11 @@
 </div>
 
 
-<%= form_for @rental do |f| %>
-  <div class="date-choice">
-    <div class="panel panel-default">
+<button class="btn btn-danger" id="see-rental-form">Rent this property</button>
 
-      <div class="panel-heading">Check-in</div>
-
-      <h4>
-        <span class="month_left_arrow"> < </span>
-        <%= @month_name %>
-        <span class="month_right_arrow"> > </span>
-      </h4>
-
-      <table id="start-date" class="panel-body calendar">
-          <% 1.upto(Time.days_in_month(@current_month)) do |day| %>
-            <% full_date = "#{@current_month}/#{day}/2014" %>
-
-            <% if day % 7 == 1 %>
-              <tr>
-            <% end %>
-
-            <% if @current_rentals.include?(Date.strptime(full_date, '%m/%d/%Y')) %>
-              <td class="unclickable"><%= " #{day}"[-2..-1] %></td>
-            <% else %>
-              <td id="<%= full_date %>" class="clickable start"><%= " #{day}"[-2..-1] %></td>
-            <% end %>
-
-            <% if day % 7 == 0 %>
-              </tr>
-            <% end %>
-          <% end %>
-        </table>
-    </div>
-
-    <div class="panel panel-default">
-      <div class="panel-heading">Check-out</div>
-
-      <h4>
-        <span class="month_left_arrow"> < </span>
-        <%= @month_name %>
-        <span class="month_right_arrow"> > </span>
-      </h4>
-
-      <table id="end-date" class="panel-body calendar">
-
-        <% 1.upto(Time.days_in_month(@current_month)) do |day| %>
-          <% full_date = "#{@current_month}/#{day}/2014" %>
-
-          <% if day % 7 == 1 %>
-            <tr>
-          <% end %>
-
-          <% if @current_rentals.include?(Date.strptime(full_date, '%m/%d/%Y')) %>
-            <td class="unclickable"><%= day %></td>
-          <% else %>
-            <td id="<%= full_date %>" class="clickable end"><%= day %></td>
-          <% end %>
-
-          <% if day % 7 == 0 %>
-              </tr>
-          <% end %>
-        <% end %>
-      </table>
-    </div>
-  </div>
-
-  <%= f.hidden_field :start_date, value: nil %>
-  <%= f.hidden_field :end_date, value: nil %>
-  <%= f.hidden_field :property_id, value: @property.id %><br/>
-  <%= f.submit "Rent!", :class => 'btn btn-danger' %>
-<% end %>
+<div id="rental-form">
+  <%= render 'rentals/form' %>
+</div>
 
 <br/>
 
@@ -120,6 +55,14 @@
       $('.end').removeClass("active_date");
       $(this).addClass("active_date");
       $('#rental_end_date').val($(this).attr('id'));
+    });
+
+    $('#see-rental-form').click(function() {
+      if ("<%=current_user%>" !== "") {
+        $('#rental-form').show();
+      } else {
+        window.location.href = "<%= new_user_registration_path %>";
+      }
     });
   });
 </script>

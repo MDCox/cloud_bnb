@@ -13,7 +13,7 @@
   <span class="logo"><%=link_to "Cloud B & B", root_path %></span>
   <div class="pull-right">
   <% if user_signed_in? %>
-      Logged in as <strong><%= link_to "#{current_user.name}", user_path(current_user) %></strong>.
+      Logged in as <strong><%= link_to "#{current_user.name}", user_path(current_user), id: "current-user-name" %></strong>.
       <%= link_to 'Edit profile', edit_user_registration_path, :class => 'btn btn-danger' %> |
       <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'btn btn-danger' %>
     <% else %>

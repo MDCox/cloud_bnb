@@ -60,3 +60,7 @@ table {
   border-radius: 20px;
   color: #101E3D;
 }
+
+#rental-form {
+  display: none;
+}

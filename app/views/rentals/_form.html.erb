@@ -1,12 +1,70 @@
 <%= form_for @rental do |f| %>
-  <div class="form-group">
-    <%= f.label :start_date, "Check in" %>
-    <%= f.date_field :start_date, :class => "form-control" %>
+  <div class="date-choice">
+    <div class="panel panel-default">
 
-    <%= f.label :end_date, "Check out"%>
-    <%= f.date_field :end_date, :class => "form-control" %>
+      <div class="panel-heading">Check-in</div>
 
-    <%= f.hidden_field :property_id, value: @property.id %><br/>
-    <%= f.submit "Rent!", :class => 'btn btn-danger' %>
+      <h4>
+        <span class="month_left_arrow"> < </span>
+        <%= @month_name %>
+        <span class="month_right_arrow"> > </span>
+      </h4>
+
+      <table id="start-date" class="panel-body calendar">
+          <% 1.upto(Time.days_in_month(@current_month)) do |day| %>
+            <% full_date = "#{@current_month}/#{day}/2014" %>
+
+            <% if day % 7 == 1 %>
+              <tr>
+            <% end %>
+
+            <% if @current_rentals.include?(Date.strptime(full_date, '%m/%d/%Y')) %>
+              <td class="unclickable"><%= " #{day}"[-2..-1] %></td>
+            <% else %>
+              <td id="<%= full_date %>" class="clickable start"><%= " #{day}"[-2..-1] %></td>
+            <% end %>
+
+            <% if day % 7 == 0 %>
+              </tr>
+            <% end %>
+          <% end %>
+        </table>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">Check-out</div>
+
+      <h4>
+        <span class="month_left_arrow"> < </span>
+        <%= @month_name %>
+        <span class="month_right_arrow"> > </span>
+      </h4>
+
+      <table id="end-date" class="panel-body calendar">
+
+        <% 1.upto(Time.days_in_month(@current_month)) do |day| %>
+          <% full_date = "#{@current_month}/#{day}/2014" %>
+
+          <% if day % 7 == 1 %>
+            <tr>
+          <% end %>
+
+          <% if @current_rentals.include?(Date.strptime(full_date, '%m/%d/%Y')) %>
+            <td class="unclickable"><%= day %></td>
+          <% else %>
+            <td id="<%= full_date %>" class="clickable end"><%= day %></td>
+          <% end %>
+
+          <% if day % 7 == 0 %>
+              </tr>
+          <% end %>
+        <% end %>
+      </table>
+    </div>
   </div>
+
+  <%= f.hidden_field :start_date, value: nil %>
+  <%= f.hidden_field :end_date, value: nil %>
+  <%= f.hidden_field :property_id, value: @property.id %><br/>
+  <%= f.submit "Rent!", :class => 'btn btn-danger' %>
 <% end %>
