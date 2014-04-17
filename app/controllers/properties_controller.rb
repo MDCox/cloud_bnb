@@ -5,6 +5,12 @@ class PropertiesController < ApplicationController
   def show
     @property = Property.find(params[:id])
     @rental = Rental.new
+    @current_rentals = []
+
+    Rental.where(property_id: @property.id).each do |rental|
+      (rental.start_date..rental.end_date).each{ |date| @current_rentals << date }
+    end
+
   end
 
   def new

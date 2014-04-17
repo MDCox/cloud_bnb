@@ -3,7 +3,7 @@ FactoryGirl.define do
     name "Name"
     email { Faker::Internet.email }
     password "password"
-    password_confirmation "password"
+    password_confirmation { password }
   end
 
   factory :property, :class => Property do
