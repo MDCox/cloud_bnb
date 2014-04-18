@@ -2,10 +2,6 @@ body {
   background-color: #F1E3AD;
 }
 
-#right-col {
-  padding: 30px;
-}
-
 .navbar {
   padding: 10px;
   line-height: 40px;
@@ -21,11 +17,14 @@ body {
   text-decoration: none;
 }
 
-.welcome {
+.tagline {
   font-family: 'Oleo Script', cursive;
-  font-size: 80px;
+  font-size: 60px;
 }
 
+.well {
+  list-style-type: none;
+}
 
 .unclickable {
   color: lightgray;
@@ -35,23 +34,6 @@ body {
   cursor: pointer;
 }
 
-#start_month_left_arrow:hover {
-  cursor: pointer;
-}
-
-#start_month_right_arrow:hover {
-  cursor: pointer;
-}
-
-#end_left_arrow:hover {
-  cursor: pointer;
-}
-
-#end_right_arrow:hover {
-  cursor: pointer;
-}
-
-
 table {
   width: 160px;
 }
@@ -59,14 +41,15 @@ table {
 .active_date {
   background-color: rgba(0,0,200,.3);
 }
- .panel {
-  width: 170px;
- }
 
- .calendar {
+.panel {
+  width: 170px;
+}
+
+.calendar {
   width: 160px;
   margin-left: 5px;
- }
+}
 
 .panel h4 {
   text-align: center;
@@ -91,42 +74,7 @@ table {
   margin: 10px;
 }
 
-.film-strip {
-  margin:10px;
-  padding: 10px;
-  overflow-y: hidden;
-  position: fixed;
-  left: 0;
-  background-color: rgba(241, 77, 74, .8);
-  border-radius: 10px;
-}
 
-.film-strip ul{
-  width: 200%;
-  margin:0;
-  padding:0;
-  list-style:none;
-}
-
-.film-strip img {/* < Add a min-width if needed */
-  padding:10px 100px;
-  text-align:center;
-  vertical-align:middle;
-}
-
-.film-strip a {
-  border:0;
-  display:inline-block;
-  margin:0px auto;
-
-}
-
-.film-strip span {
+.col-heading {
   text-align: center;
-  border:0;
-  display:inline-block;
-  margin:0px auto;
-  border-radius: 5px;
-  padding: 5px;
-  height: 90%;
 }
